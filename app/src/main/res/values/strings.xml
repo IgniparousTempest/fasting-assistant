@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Fasting Assistant</string>
+    <string name="status_eating">Eating</string>
+    <string name="status_fasting">Fasting</string>
+    <string name="widget_window">%s to %s</string>
+    <string name="widget_time_left">%s hours left</string>
+    <string name="widget_time_left_less_than_30">less than 30 min left</string>
+
+    <string name="saved_time_picker_start_is_24_hour">saved_time_picker_start_is_24_hour</string>
+    <string name="saved_time_picker_end_is_24_hour">saved_time_picker_end_is_24_hour</string>
+    <string name="saved_time_picker_start_hour">saved_time_picker_start_hour</string>
+    <string name="saved_time_picker_start_minute">saved_time_picker_start_minute</string>
+    <string name="saved_time_picker_end_hour">saved_time_picker_end_hour</string>
+    <string name="saved_time_picker_end_minute">saved_time_picker_end_minute</string>
+    <string name="shared_preferences_key">shared_preferences_key</string>
+</resources>
