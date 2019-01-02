@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val minuteEnd = sharedPreferences.getInt(getString(R.string.saved_time_picker_end_minute), 0)
         setTime(editTextTimeStart, hourStart, minuteStart)
         setTime(editTextTimeEnd, hourEnd, minuteEnd)
+        setStatus()
     }
 
     override fun onClick(view: View) {
@@ -75,6 +76,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun setTime(view: EditText, hourOfDay: Int, minute: Int) {
         view.setText(timeFormat(hourOfDay, minute), TextView.BufferType.EDITABLE)
+    }
+
+    private fun setStatus() {
         val hourStart = sharedPreferences.getInt(getString(R.string.saved_time_picker_start_hour), 7)
         val minuteStart = sharedPreferences.getInt(getString(R.string.saved_time_picker_start_minute), 0)
         val hourEnd = sharedPreferences.getInt(getString(R.string.saved_time_picker_end_hour), 19)
@@ -102,7 +106,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
         setTime(view, hourOfDay, minute)
+        setStatus()
         Toast.makeText(this, "Saved!", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setStatus()
     }
 
     override fun onPause() {
