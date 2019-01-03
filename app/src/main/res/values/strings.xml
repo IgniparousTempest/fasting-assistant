@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Fasting Assistant</string>
+    <string name="duration">You have a eating window of %s, and a fasting window of %s.</string>
+    <string name="duration_hours">%s hours</string>
+    <string name="duration_hours_minutes">%s hours %s min</string>
+    <string name="duration_minutes">%s minutes</string>
     <string name="status_eating">Eating</string>
     <string name="status_fasting">Fasting</string>
     <string name="widget_window">%s to %s</string>

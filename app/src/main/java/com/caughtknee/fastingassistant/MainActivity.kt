@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var editTextTimeStart: EditText
     private lateinit var editTextTimeEnd: EditText
     private lateinit var textViewStatus: TextView
+    private lateinit var textViewDuration: TextView
     private lateinit var layoutStatus: ConstraintLayout
     private lateinit var adView : AdView
     private lateinit var sharedPreferences: SharedPreferences
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         adView.loadAd(adRequest)
 
         textViewStatus = findViewById(R.id.textViewStatus)
+        textViewDuration = findViewById(R.id.textViewDuration)
         layoutStatus = findViewById(R.id.layoutStatus)
         editTextTimeStart = findViewById(R.id.editTextTimeStart)
         editTextTimeEnd = findViewById(R.id.editTextTimeEnd)
@@ -79,6 +81,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setStatus() {
+        // Set status window
         val hourStart = sharedPreferences.getInt(getString(R.string.saved_time_picker_start_hour), 7)
         val minuteStart = sharedPreferences.getInt(getString(R.string.saved_time_picker_start_minute), 0)
         val hourEnd = sharedPreferences.getInt(getString(R.string.saved_time_picker_end_hour), 19)
@@ -86,6 +89,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val eatingAllowed = canEat(LocalTime.now(), hourStart, minuteStart, hourEnd, minuteEnd)
         textViewStatus.setText(if (eatingAllowed) R.string.status_eating else R.string.status_fasting)
         layoutStatus.setBackgroundColor(ResourcesCompat.getColor(resources, if (eatingAllowed) R.color.colourEating else R.color.colourFasting, null))
+
+        // Set duration
+        val eatingDuration = duration(hourStart, minuteStart, hourEnd, minuteEnd)
+        val fastingDuration = 24 * 60 - eatingDuration
+        val eatingDurationString = durationString(this, eatingDuration)
+        val fastingDurationString = durationString(this, fastingDuration)
+        textViewDuration.setText(getString(R.string.duration, eatingDurationString, fastingDurationString), TextView.BufferType.NORMAL)
     }
 
     private fun onTimeSet(view: EditText, hourOfDay: Int, minute: Int) {
